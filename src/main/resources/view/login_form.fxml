@@ -6,9 +6,46 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXButton?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="lk.ijse.chat_Application1.controller.LoginFormController"
             prefHeight="400.0" prefWidth="600.0">
+    <children>
+        <ImageView fitHeight="551.0" fitWidth="400.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+<!--            <image>-->
+<!--                <Image url="@images/icon/background.jpg" />-->
+<!--            </image>-->
+        </ImageView>
+        <AnchorPane prefHeight="46.0" prefWidth="389.0" style="-fx-background-color: black;">
+            <children>
+                <Label layoutX="134.0" layoutY="1.0" prefHeight="15.0" prefWidth="125.0" text="Live Chat" textFill="WHITE">
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <ImageView fitHeight="117.0" fitWidth="125.0" layoutX="138.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
+<!--            <image>-->
+<!--                <Image url="@images/icon/whatsappLogo.png" />-->
+<!--            </image>-->
+        </ImageView>
+        <JFXTextField fx:id="txtUserName" focusColor="WHITE" layoutX="55.0" layoutY="404.0" onAction="#logInOnAction" prefHeight="31.0" prefWidth="283.0" promptText="Enter Name" styleClass="txtEnterName" unFocusColor="WHITE" />
+        <JFXButton buttonType="RAISED" layoutX="123.0" layoutY="509.0" onAction="#logInOnAction" prefHeight="20.0" prefWidth="143.0" style="-fx-background-color: #198566;" text="Log in">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </JFXButton>
+        <ImageView fitHeight="31.0" fitWidth="35.0" layoutX="350.0" layoutY="53.0" onMouseClicked="#logoutOnAction" pickOnBounds="true" preserveRatio="true">
+<!--            <image>-->
+<!--                <Image url="@images/icon/powerOff.png" />-->
+<!--            </image>-->
+        </ImageView>
+    </children>
 
 </AnchorPane>
