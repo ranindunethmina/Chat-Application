@@ -4,8 +4,6 @@ import javafx.event.ActionEvent;
 
 public class ClientFormController {
     public void btnMsgOnAction(ActionEvent event) {
-    }
 
-    public void btnImageAction(ActionEvent event) {
     }
 }

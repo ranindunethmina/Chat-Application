@@ -1,62 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.chat_Application1.controller.ClientFormController">
     <children>
         <ScrollPane fx:id="scrollpain" layoutX="12.0" layoutY="59.0" prefHeight="431.0" prefWidth="319.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="59.0">
             <content>
-                <VBox fx:id="vBox" prefHeight="475.0" prefWidth="315.0" />
+                <VBox fx:id="vBox" prefHeight="416.0" prefWidth="315.0" />
             </content>
         </ScrollPane>
-        <TextField fx:id="txtMsg" layoutX="10.0" layoutY="507.0" onAction="#btnMsgOnAction" prefHeight="32.0" prefWidth="284.0" style="-fx-background-radius: 15;" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="47.0" />
-        <JFXButton layoutX="307.0" layoutY="508.0" prefHeight="30.0" prefWidth="36.0" AnchorPane.rightAnchor="7.0">
-            <styleClass>
-                <String fx:value="btn" />
-                <String fx:value="btn2" />
-            </styleClass>
-         <graphic>
-            <ImageView fitHeight="26.0" fitWidth="26.0">
-               <image>
-                  <Image url="@../images/icons8-send-48.png" />
-               </image>
-            </ImageView>
-         </graphic>
+        <TextField fx:id="txtMsg" layoutX="43.0" layoutY="507.0" onAction="#btnMsgOnAction" prefHeight="32.0" prefWidth="260.0" promptText="Enter Your Message" style="-fx-background-radius: 15;" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="47.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#18ce9d" height="48.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" width="350.0" />
+      <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="11.0" layoutY="515.0">
+         <image>
+            <Image url="@../images/emoji/icons8-lol-48.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="chatName" layoutX="10.0" layoutY="7.0" prefHeight="32.0" prefWidth="102.0" textFill="WHITE">
          <font>
-            <Font size="1.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
-        </JFXButton>
-        <JFXButton fx:id="emojiBtn" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="14.999999999999982" layoutY="512.0" prefHeight="25.0" prefWidth="25.0" textFill="#fffdfd" AnchorPane.rightAnchor="309.6666666666667">
-            <!--         <graphic>-->
-            <!--            <ImageView fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">-->
-            <!--               <image>-->
-            <!--                  <Image url="C:\Users\ravin\Downloads\icons8-happy-32.png" />-->
-            <!--               </image>-->
-            <!--            </ImageView>-->
-            <!--         </graphic>-->
-            <styleClass>
-                <String fx:value="client" />
-                <String fx:value="client2" />
-            </styleClass>
-         <font>
-            <Font size="1.0" />
-         </font>
-         <graphic>
-            <ImageView fitHeight="22.0" fitWidth="22.0">
-               <image>
-                  <Image url="@../images/icons8-lol-48.png" />
-               </image>
-            </ImageView>
-         </graphic>
-        </JFXButton>
+      </Label>
+      <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="313.0" layoutY="509.0">
+         <image>
+            <Image url="@../images/icon/icons8-send-48.png" />
+         </image>
+      </ImageView>
     </children>
 
 </AnchorPane>
