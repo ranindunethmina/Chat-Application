@@ -1,39 +1,242 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.chat_Application1.controller.ClientFormController">
+<AnchorPane fx:id="root" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.chat_Application1.controller.ClientFormController">
     <children>
-        <ScrollPane fx:id="scrollpain" layoutX="12.0" layoutY="59.0" prefHeight="431.0" prefWidth="319.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="59.0">
+      <Pane fx:id="textArea" layoutX="8.0" layoutY="501.0" prefHeight="40.0" prefWidth="297.0">
+         <children>
+            <TextField fx:id="txtMessage" layoutX="28.0" onAction="#txtMessageOnAction" prefHeight="40.0" prefWidth="235.0" promptText="Type here" style="-fx-background-color: #ffffff00; -fx-text-fill: #828b90; -fx-background-radius: 20px;" />
+            <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="257.0" layoutY="3.0" onAction="#btnAttachmentOnAction" ripplerFill="#445159">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" opacity="0.5" pickOnBounds="true">
+                     <image>
+                        <Image url="@../images/icon/attachment.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="-7.0" layoutY="2.0" onAction="#btnEmojiOnAction" ripplerFill="#445159">
+               <graphic>
+                  <ImageView fitHeight="26.0" fitWidth="27.0" opacity="0.68" pickOnBounds="true">
+                     <image>
+                        <Image url="@../images/emoji/lol.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+         </children>
+      </Pane>
+      <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="303.0" layoutY="506.0" onAction="#btnSendOnAction" prefHeight="20.0" prefWidth="35.0" ripplerFill="#57cc99" style="-fx-background-color: #57cc99; -fx-background-radius: 10px;">
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="24.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/icon/msg-send.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+        <ScrollPane fx:id="scrollPane" layoutX="12.0" layoutY="59.0" prefHeight="437.0" prefWidth="328.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="59.0">
             <content>
                 <VBox fx:id="vBox" prefHeight="416.0" prefWidth="315.0" />
             </content>
         </ScrollPane>
-        <TextField fx:id="txtMsg" layoutX="43.0" layoutY="507.0" onAction="#btnMsgOnAction" prefHeight="32.0" prefWidth="260.0" promptText="Enter Your Message" style="-fx-background-radius: 15;" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="47.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#18ce9d" height="48.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" width="350.0" />
-      <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="11.0" layoutY="515.0">
-         <image>
-            <Image url="@../images/emoji/icons8-lol-48.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="chatName" layoutX="10.0" layoutY="7.0" prefHeight="32.0" prefWidth="102.0" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="313.0" layoutY="509.0">
-         <image>
-            <Image url="@../images/icon/icons8-send-48.png" />
-         </image>
-      </ImageView>
+      <AnchorPane fx:id="emojiPane" layoutX="10.0" layoutY="264.0" opacity="0.74" prefHeight="229.0" prefWidth="188.0" style="-fx-background-color: rgb(128,128,128); -fx-background-radius: 15;">
+         <children>
+            <GridPane layoutX="10.0" layoutY="13.0" prefHeight="200.0" prefWidth="149.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#eyeclose_smile" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="@../images/emoji/eyeclose_smile.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#large_smile" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="@../images/emoji/large_smile.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#normal_smile" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
+                     <image>
+                        <Image url="@../images/emoji/normal_smile.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#small_smile" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                     <image>
+                        <Image url="@../images/emoji/small_smile.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#tong_smile" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
+                     <image>
+                        <Image url="@../images/emoji/tong_smile.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#love" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/emoji/love.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#green_sad" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="6">
+                     <image>
+                        <Image url="@../images/emoji/green_sad.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#money" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="8">
+                     <image>
+                        <Image url="@../images/emoji/money.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#sad" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <image>
+                        <Image url="@../images/emoji/sad.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#lot_sad" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                     <image>
+                        <Image url="@../images/emoji/lot_sad.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#cry" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                     <image>
+                        <Image url="@../images/emoji/cry.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#cry_sad" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                     <image>
+                        <Image url="@../images/emoji/cry_sad.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#woow" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="8">
+                     <image>
+                        <Image url="@../images/emoji/woow.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#tuin" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                     <image>
+                        <Image url="@../images/emoji/tuin.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#real_smile" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="@../images/emoji/real_smile.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+      <Pane fx:id="imagePane" onMouseClicked="#closeOnAction" prefHeight="550.0" prefWidth="350.0" visible="false">
+         <children>
+            <ImageView fx:id="clickedImage" fitHeight="437.0" fitWidth="328.0" layoutX="13.0" layoutY="59.0" pickOnBounds="true" />
+         </children>
+      </Pane>
+      <Pane fx:id="header" prefHeight="51.0" prefWidth="350.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#18ce9d" height="51.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" width="350.0" />
+            <Label fx:id="lblName" layoutX="55.0" layoutY="1.0" prefHeight="25.0" prefWidth="102.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Circle fill="#26bc12" layoutX="61.0" layoutY="39.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <ImageView fitHeight="39.0" fitWidth="33.0" layoutX="11.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icon/user.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="73.0" layoutY="30.0" text="online">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="themeView" fitHeight="25.0" fitWidth="25.0" layoutX="315.0" layoutY="13.0" onMouseClicked="#themeViewOnAction" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/icon/light.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
     </children>
 
 </AnchorPane>

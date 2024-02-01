@@ -13,7 +13,7 @@
     <children>
         <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="126.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/icon/icons8-chat-48.png" />
+            <Image url="@../images/icon/chat.png" />
          </image></ImageView>
         <Label layoutX="52.0" layoutY="57.0" text="PLAY CONNECT (PVT) LTD">
             <font>
@@ -25,8 +25,8 @@
                 <Font name="System Bold" size="16.0" />
             </font>
         </Label>
-        <TextField fx:id="txtUserName" layoutX="97.0" layoutY="334.0" prefHeight="29.0" prefWidth="207.0" promptText="Enter Your Name Here" />
-        <Button fx:id="btnLog" layoutX="142.0" layoutY="405.0" mnemonicParsing="false" onAction="#logInOnAction" style="-fx-background-color: #E04006;" text="Create Account" textFill="WHITE">
+        <TextField fx:id="txtUserName" layoutX="97.0" layoutY="339.0" onAction="#txtUsernameOnAction" prefHeight="29.0" prefWidth="207.0" promptText="Enter Your Name Here" />
+        <Button fx:id="btnLog" layoutX="167.0" layoutY="395.0" mnemonicParsing="false" onAction="#btnLoginOnAction" style="-fx-background-color: #E04006;" text="Login" textFill="WHITE">
             <font>
                 <Font size="15.0" />
             </font>

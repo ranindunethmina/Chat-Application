@@ -12,9 +12,8 @@ public class Launcher extends Application {
     public void start(Stage stage) throws Exception {
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/login_form.fxml"))));
         stage.setTitle("Live Chat");
-        stage.setResizable(false);
+        stage.getIcons().add(new javafx.scene.image.Image("/images/icon/whatsapp_logo.png"));
+        stage.centerOnScreen();
         stage.show();
-        stage.getIcons().add(new javafx.scene.image.Image("/images/icon/icons8-whatsapp-48.png"));
     }
-
 }
