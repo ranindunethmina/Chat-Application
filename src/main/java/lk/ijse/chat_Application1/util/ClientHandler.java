@@ -29,19 +29,21 @@ public class ClientHandler extends Thread {
         try {
             String message;
             while ((message = reader.readLine()) != null) {
-                if (message.equalsIgnoreCase("bye")) {
-                    break;
-                }
                 for (ClientHandler clientHandler : clients) {
                     clientHandler.writer.println(message);
                 }
             }
-            reader.close();
-            writer.close();
-            socket.close();
-        } catch (IOException e) {
+        }
+         catch (IOException e) {
             e.printStackTrace();
+        }finally {
+            try {
+                writer.close();
+                reader.close();
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
-
 }

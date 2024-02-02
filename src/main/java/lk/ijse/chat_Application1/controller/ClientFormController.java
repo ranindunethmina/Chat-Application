@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
@@ -68,12 +69,13 @@ public class ClientFormController{
 
         new Thread(() -> {
             try {
-                Socket socket = new Socket("localhost",3002);
+                Socket socket = new Socket("localhost",8080);
                 System.out.println("Server accepted " + LoginFormController.userName + "!");
+
                 bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 writer = new PrintWriter(socket.getOutputStream(),true);
 
-                writer.println("joi"+username+"~joining");
+                writer.println("joi"+lblName.getText()+"~joining");
 
                 while (true){
                     //reading response
@@ -90,16 +92,19 @@ public class ClientFormController{
                     if (firstChars.equalsIgnoreCase("img")){
                         String[] imgs = name.split("img");
                         finalName = imgs[1];
-                    }else if(firstChars.equalsIgnoreCase("joi")) {
+                    }
+                    else if(firstChars.equalsIgnoreCase("joi")) {
                         String[] imgs = name.split("joi");
                         finalName = imgs[1];
 
-                    }else if(firstChars.equalsIgnoreCase("lef")){
+                    }
+                    else if(firstChars.equalsIgnoreCase("lef")){
                         String[] imgs = name.split("lef");
                         finalName = imgs[1];
                     }
+
                     if (firstChars.equalsIgnoreCase("img")){
-                        if (finalName.equalsIgnoreCase(username)){
+                        if (lblName.getText().equals(finalName)){
 
                             //adding image to message
                             File receiveFile = new File(message);
@@ -115,12 +120,7 @@ public class ClientFormController{
                             Text text = new Text("~ Me");
 
                             //add time
-                            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
-                            LocalDateTime now = LocalDateTime.now();
-                            Text time = new Text(dtf.format(now));
-                            HBox timeBox = new HBox();
-                            timeBox.getChildren().add(time);
-                            timeBox.setAlignment(Pos.BASELINE_RIGHT);
+                            HBox timeBox = setTime();
 
                             VBox vbox = new VBox(10);
                             vbox.getChildren().addAll(text, imageView, timeBox);
@@ -161,12 +161,7 @@ public class ClientFormController{
                             Text text = new Text("~ "+finalName);
 
                             //add time
-                            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
-                            LocalDateTime now = LocalDateTime.now();
-                            Text time = new Text(dtf.format(now));
-                            HBox timeBox = new HBox();
-                            timeBox.getChildren().add(time);
-                            timeBox.setAlignment(Pos.BASELINE_RIGHT);
+                            HBox timeBox = setTime();
 
                             VBox vbox = new VBox(10);
                             vbox.getChildren().addAll(text, imageView, timeBox);
@@ -182,97 +177,84 @@ public class ClientFormController{
                                 scrollPane.layout();
                                 scrollPane.setVvalue(2.0);
 
+
                                 //adding space between messages
                                 HBox hBox1 = new HBox();
                                 hBox1.setPadding(new Insets(5, 5, 5, 10));
                                 vBox.getChildren().add(hBox1);
                             });
                         }
-                    }else if(firstChars.equalsIgnoreCase("joi")) {
-                        if (finalName.equalsIgnoreCase(username)){
-
-                            //adding name of client which join the chat
-                            Label text = new Label("You have join the chat");
-                            HBox hBox = new HBox();
-                            hBox.getChildren().add(text);
-                            hBox.setAlignment(Pos.CENTER);
-
-                            Platform.runLater(() -> {
-                                vBox.getChildren().add(hBox);
-
-                                HBox hBox1 = new HBox();
-                                hBox1.setPadding(new Insets(5, 5, 5, 10));
-                                vBox.getChildren().add(hBox1);
-                            });
-                        }else{
-                            Label text = new Label(finalName+" has join the chat");
-                            HBox hBox = new HBox();
-                            hBox.getChildren().add(text);
-                            hBox.setAlignment(Pos.CENTER);
-
-                            Platform.runLater(() -> {
-                                vBox.getChildren().add(hBox);
-
-                                HBox hBox1 = new HBox();
-                                hBox1.setPadding(new Insets(5, 5, 5, 10));
-                                vBox.getChildren().add(hBox1);
-                            });
-                        }
-                    }else if(firstChars.equalsIgnoreCase("lef")){
-                        //adding name of client which left the chat
-                        Label text = new Label(finalName+" has left the chat");
+                    }
+                    else if(firstChars.equalsIgnoreCase("joi")) {
                         HBox hBox = new HBox();
-                        hBox.getChildren().add(text);
+                        if (lblName.getText().equals(finalName)){
+                            Label joinText = new Label("You have join the chat");
+
+                            hBox.getChildren().add(joinText);
+                            hBox.setAlignment(Pos.CENTER);
+                            hBox.setPadding(new Insets(5,5,5,10));
+
+                        }else {
+                            Label joinText = new Label(finalName + " has join the chat");
+
+                            hBox.getChildren().add(joinText);
+                            hBox.setAlignment(Pos.CENTER);
+                            hBox.setPadding(new Insets(5, 5, 5, 10));
+                        }
+
+                        Platform.runLater(() ->
+                                vBox.getChildren().addAll(hBox));
+
+                    }
+                    else if(firstChars.equalsIgnoreCase("lef")){
+                        Label leftText = new Label(finalName + " has left the chat");
+
+                        HBox hBox = new HBox();
+                        hBox.getChildren().add(leftText);
                         hBox.setAlignment(Pos.CENTER);
+                        hBox.setPadding(new Insets(5, 5, 5, 10));
 
-                        Platform.runLater(() -> {
-                            vBox.getChildren().add(hBox);
+                        Platform.runLater(() ->
+                                vBox.getChildren().addAll(hBox));
 
-                            HBox hBox1 = new HBox();
-                            hBox1.setPadding(new Insets(5, 5, 5, 10));
-                            vBox.getChildren().add(hBox1);
-                        });
                     } else{
-                        if(name.equalsIgnoreCase(username)){
+                        if(lblName.getText().equals(finalName)){ //1
 
                             //add message
-                            TextFlow tempFlow = new TextFlow();
                             Text text = new Text(message);
                             text.setStyle("-fx-fill: black");
                             text.setWrappingWidth(150);
-                            tempFlow.getChildren().add(text);
+                            TextFlow tempFlow = new TextFlow(text);
                             tempFlow.setMaxWidth(200);
 
                             //add sender name
                             Text nameText = new Text("~ Me");
 
                             //add time
-                            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
-                            LocalDateTime now = LocalDateTime.now();
-                            Text time = new Text(dtf.format(now));
-                            HBox timeBox = new HBox();
-                            timeBox.getChildren().add(time);
-                            timeBox.setAlignment(Pos.BASELINE_RIGHT);
+                            HBox timeBox = setTime();
+
                             VBox vbox = new VBox(10);
                             vbox.setPrefWidth(210);
                             vbox.getChildren().addAll(nameText, tempFlow, timeBox);
 
                             //add all into message
-                            HBox hBox = new HBox(12);
-                            hBox.setMaxWidth(220);
-                            hBox.setMaxHeight(50);
+                            HBox hBox = new HBox(10);
+                            hBox.setMaxWidth(190);
+                            hBox.setMaxHeight(220);
                             hBox.getChildren().add(vbox);
+
                             StackPane stackPane = new StackPane(hBox);
                             stackPane.setAlignment(Pos.CENTER_RIGHT);
 
                             //add message into message area
                             Platform.runLater(() -> {
-                                vBox.getChildren().addAll(stackPane);
+                                vBox.getChildren().addAll(stackPane); //2
                                 scrollPane.layout();
                                 scrollPane.setVvalue(2.0);
 
                                 //adding space between messages
                                 HBox hBox1 = new HBox();
+                                hBox1.setAlignment(Pos.CENTER_LEFT);
                                 hBox1.setPadding(new Insets(5, 5, 5, 10));
                                 vBox.getChildren().add(hBox1);
                             });
@@ -286,21 +268,17 @@ public class ClientFormController{
                             tempFlow.setMaxWidth(200);
 
                             //add sender name
-                            Text nameText = new Text("~ "+name);
+                            Text nameText = new Text("~ "+finalName); //3
 
                             //add time
-                            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
-                            LocalDateTime now = LocalDateTime.now();
-                            Text time = new Text(dtf.format(now));
-                            HBox timeBox = new HBox();
-                            timeBox.getChildren().add(time);
-                            timeBox.setAlignment(Pos.BASELINE_RIGHT);
+                            HBox timeBox = setTime();
+
                             VBox vbox = new VBox(10);
                             vbox.setPrefWidth(210);
                             vbox.getChildren().addAll(nameText, tempFlow, timeBox);
 
                             //add all into message
-                            HBox hBox = new HBox();
+                            HBox hBox = new HBox(10);
                             hBox.setMaxWidth(220);
                             hBox.setMaxHeight(50);
                             hBox.getChildren().add(vbox);
@@ -318,7 +296,6 @@ public class ClientFormController{
                             });
                         }
                     }
-                    file = null;
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -348,6 +325,7 @@ public class ClientFormController{
         if (!txtMessage.getText().isEmpty()){
             if (file != null){
                 writer.println("img"+lblName.getText()+"~"+ file.getPath());
+                file = null;
             }else {
                 writer.println(lblName.getText() + "~" + txtMessage.getText());
             }
@@ -446,7 +424,6 @@ public class ClientFormController{
     void woow(MouseEvent event) {
         unicodeEmoji(128559);
     }
-
     public void themeViewOnAction(MouseEvent mouseEvent) {
         if(themeView.getImage().getUrl().equals(new Image("images/icon/light.png").getUrl())){
             root.setStyle("-fx-background-color: #fefae0;");
@@ -462,9 +439,21 @@ public class ClientFormController{
             themeView.setImage(new Image("images/icon/light.png"));;
         }
     }
-
     public void closeOnAction(MouseEvent mouseEvent) {
         imagePane.setVisible(false);
+    }
+    private HBox setTime() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
+        LocalDateTime now = LocalDateTime.now();
+
+        Text time = new Text(dtf.format(now));
+        time.setFont(Font.font(10));
+
+        HBox timeBox = new HBox();
+        timeBox.getChildren().add(time);
+        timeBox.setAlignment(Pos.BASELINE_RIGHT);
+
+        return timeBox;
     }
 
 }

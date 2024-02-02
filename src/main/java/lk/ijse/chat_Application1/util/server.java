@@ -10,7 +10,7 @@ public class server {
 
     public static void main(String[] args) {
         try (
-            ServerSocket serverSocket = new ServerSocket(3002)) {
+            ServerSocket serverSocket = new ServerSocket(8080)) {
             System.out.println("Server started!");
 
             while (true) {
@@ -22,8 +22,7 @@ public class server {
                 clientHandler.start();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
-
 }
