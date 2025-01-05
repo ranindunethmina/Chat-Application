@@ -14,7 +14,7 @@ Before you begin, ensure you have met the following requirements:
 ### Installation
   1.Clone the repository:
 
-https://github.com/gayanukabulegoda/Live-Chat-Room.git <br>
+https://github.com/ranindunethmina/Chat-Application.git <br>
   2.Open the project in your IDE.
 
   3.Build and run the application.
